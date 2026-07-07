@@ -4,7 +4,7 @@ test.describe("Api challenge", () => {
   test("GET /products/{id}", async ({ request }) => {
     const apiUrl = "https://api.practicesoftwaretesting.com";
     const getProductResponse = await request.get(
-      apiUrl + "/products/search?q=thor%20hammer"
+      apiUrl + "/products/search?q=thor%20hammer",
     );
     expect(getProductResponse.status()).toBe(200);
     const productBody = await getProductResponse.json();

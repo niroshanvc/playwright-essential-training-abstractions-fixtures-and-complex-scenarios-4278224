@@ -22,7 +22,7 @@ test.describe("Home page with no auth", () => {
 
   test("validate page title", async ({ page }) => {
     await expect(page).toHaveTitle(
-      "Practice Software Testing - Toolshop - v5.0"
+      "Practice Software Testing - Toolshop - v5.0",
     );
   });
 
