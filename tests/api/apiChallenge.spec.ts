@@ -20,5 +20,8 @@ test.describe("Api challenge", () => {
     expect(body.is_rental).toBe(false);
     expect(body.name).toBe("Thor Hammer");
     expect(body.price).toBe(11.14);
+
+    // our own assertion
+    expect(body.price).toBeNumber();
   });
 });
