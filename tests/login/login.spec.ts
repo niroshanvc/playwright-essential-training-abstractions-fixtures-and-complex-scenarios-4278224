@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "@pages/login.page";
+import { LoginPage } from "@pages/login/login.page";
 import { registerUser } from "@datafactory/register";
 
 test("login without page object", async ({ page }) => {
@@ -35,7 +35,9 @@ test("login with newly registered user", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
   await loginPage.login(email, password);
-  await page.getByTestId("nav-menu").waitFor({ state: "visible", timeout: 10000 });
+  await page
+    .getByTestId("nav-menu")
+    .waitFor({ state: "visible", timeout: 10000 });
 
   await expect(page.getByTestId("nav-menu")).toContainText("Test User");
   await expect(page.getByTestId("page-title")).toContainText("My account");
