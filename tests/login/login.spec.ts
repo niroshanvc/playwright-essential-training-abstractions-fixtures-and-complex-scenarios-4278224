@@ -1,4 +1,4 @@
-import { test, expect } from "@fixtures/pages.fixtures";
+import { test, expect } from "@fixtures/pages.fixture";
 import { LoginPage } from "@pages/login/login.page";
 import { registerUser } from "@datafactory/register";
 
@@ -39,17 +39,14 @@ test("login with newly registered user", async ({ page }) => {
   await expect(page.getByTestId("page-title")).toContainText("My account");
 });
 
-test("login with newly registered user - using fixture", async ({ page, loginPage }) => {
+test("login with newly registered user - using fixture", async ({ loginPage, accountPage }) => {
   const email = `test${Date.now()}@test.com`;
   const password = "fjdWEdfs82@";
 
   await registerUser(email, password);
   await loginPage.goto();
   await loginPage.login(email, password);
-  await page
-    .getByTestId("nav-menu")
-    .waitFor({ state: "visible", timeout: 10000 });
 
-  await expect(page.getByTestId("nav-menu")).toContainText("Test User");
-  await expect(page.getByTestId("page-title")).toContainText("My account");
+  await expect(accountPage.navMenu).toContainText("Test User");
+  await expect(accountPage.pageTitle).toContainText("My account");
 });
